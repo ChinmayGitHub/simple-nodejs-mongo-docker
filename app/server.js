@@ -15,7 +15,7 @@ app.get('/', function (req, res) {
   });
 
 app.get('/profile-picture', function (req, res) {
-  var img = fs.readFileSync('./images/profile-1.jpg');
+  var img = fs.readFileSync('/home/app/images/profile-1.jpg');
   res.writeHead(200, {'Content-Type': 'image/jpg' });
   res.end(img, 'binary');
 });
@@ -23,7 +23,7 @@ app.get('/profile-picture', function (req, res) {
 app.post('/update-profile', function (req, res) {
   var userObj = req.body;
 
-  MongoClient.connect("mongodb://admin:password@localhost:27017", {useNewUrlParser: true, useUnifiedTopology: true},
+  MongoClient.connect("mongodb://admin:password@mongodb", {useNewUrlParser: true, useUnifiedTopology: true},
    function (err, client) {
     if (err) throw err;
 
@@ -46,7 +46,7 @@ app.post('/update-profile', function (req, res) {
 app.get('/get-profile', function (req, res) {
   var response = {};
   // Connect to the db
-  MongoClient.connect("mongodb://admin:password@localhost:27017", {useNewUrlParser: true, useUnifiedTopology: true},
+  MongoClient.connect("mongodb://admin:password@mongodb", {useNewUrlParser: true, useUnifiedTopology: true},
    function (err, client) {
     if (err) throw err;
 
